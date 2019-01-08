@@ -1,0 +1,4 @@
+网址：
+https://www.cnblogs.com/rabbitpei/p/6738671.html
+
+编辑 /etc/sysctl.conf，修改参数 vm.overcommit_memory = 1，重启服务器或者用户重新登录

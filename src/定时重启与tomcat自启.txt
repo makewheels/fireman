@@ -1,0 +1,21 @@
+设置tomcat开机自启：
+编辑文件：
+vim /etc/rc.d/rc.local
+加入：
+export JAVA_HOME=/usr/local/mysoftware/packages/jdk1.8.0_171
+/usr/local/mysoftware/apache-tomcat-7.0.52/bin/startup.sh
+修改权限：
+chmod +x /etc/rc.d/rc.local
+
+设置服务器电脑定时重启；
+修改shutdown.sh，加入：
+export JAVA_HOME=/usr/local/mysoftware/packages/jdk1.8.0_171
+打开定时任务调度：
+crontab -e
+每天凌晨三点二十九分关闭tomcat，加入：
+29 3 * * * /usr/local/mysoftware/apache-tomcat-7.0.52/bin/shutdown.sh
+每天凌晨三点三十分重启，加入：
+30 3 * * * /sbin/reboot
+
+重启服务器：
+reboot

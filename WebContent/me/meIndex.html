@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<meta http-equiv="Cache" content="no-cache">
+		<title>我的</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<style>
+			h1 {
+				margin-top: 0px;
+				margin-bottom: 0px;
+				padding-top: 0px;
+				padding-bottom: 0px;
+			}
+			
+			h3 {
+				margin-top: 0px;
+				margin-bottom: 0px;
+				padding-top: 0px;
+				padding-bottom: 0px;
+			}
+		</style>
+		<center><br />
+			<h2 id="username"></h2>
+			<h2 id="phone"></h2>
+			<a href="bindPhone.html">
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block">绑定手机</button>
+			</a>
+			<a href="feedback.html">
+				<button type="button" class="mui-btn mui-btn-block">我要反馈</button>
+			</a>
+			<a href="statistics.html">
+				<button type="button" class="mui-btn mui-btn-block">统计数据</button>
+			</a>
+			<button id="btn_logout" type="button" class="mui-btn mui-btn-block">退出登录</button>
+			<a href="wechatOA.html">
+				<button type="button" class="mui-btn mui-btn-green mui-btn-block">消防习题 微信公众号</button>
+			</a>
+			<a href="../reward/reward.html">
+				<button type="button" class="mui-btn mui-btn-red mui-btn-block">哈哈，打赏在这！</button>
+			</a>
+			<a href="../index.html">
+				<button type="button" class="mui-btn mui-btn-purple mui-btn-block">返回主页</button>
+			</a>
+		</center>
+		<script type="text/javascript">
+			mui.post(baseurl + '/getUsername', {}, function(data) {
+				if(data.result == "toLogin") {
+					window.location.href = "../login.html"
+					return;
+				} else {
+					document.getElementById("username").innerHTML = data.message;
+				}
+			}, 'json');
+			
+			mui.post(baseurl + '/getPhone', {}, function(data) {
+				if(data.result == "toLogin") {
+					window.location.href = "../login.html"
+					return;
+				} else {
+					var phone=data.message;
+					if(phone!=undefined){
+						document.getElementById("phone").innerHTML = "手机："+phone;
+					}
+				}
+			}, 'json');
+			
+			document.getElementById("btn_logout").addEventListener('tap', function() {
+				mui.post(baseurl + '/logout', {}, function(data) {
+					if(data.result == "toLogin") {
+						window.location.href = "../login.html"
+						return;
+					}
+				}, 'json');
+			})
+		</script>
+	</body>
+
+</html>

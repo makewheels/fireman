@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<meta http-equiv="Cache" content="no-cache">
+		<title>会员激活</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<style>
+			h2{
+				margin-top:40px;
+				margin-bottom:30px;
+			}
+			textarea {
+				height: 68px;
+			}
+		</style>
+		<center>
+			<h2>使用激活码开通</h2>
+		</center>
+		<textarea id='ta_code' class="mui-input-clear question" placeholder="请粘贴激活码"></textarea>
+		<h3 style="color:green;margin-left:10px;">激活码使用后失效</h3>
+		<button id="btn_active" type="button" class="mui-btn mui-btn-blue mui-btn-block">激活会员</button>
+		<br />
+		<script type="text/javascript">
+			mui.post(baseurl + '/getVipInfo', {}, function(data) {
+				if(data.result == "toLogin") {
+					window.location.href = "../login.html";
+				}
+			}, 'json');
+			document.getElementById("btn_active").addEventListener('tap', function() {
+				var code=document.getElementById("ta_code").value;
+				if(code==""){
+					mui.alert("激活码为空");
+					return;
+				}
+				//提交激活码
+				mui.post(baseurl + '/vip?method=submitCode', {
+					code:code
+				}, function(data) {
+					if(data.result == "toLogin") {
+						window.location.href = "../login.html";
+					}else if(data.result=="error"){
+						mui.alert(data.message);
+					}else if(data.result=="toPage"){
+						window.location.href=data.message;
+					}
+				}, 'json');
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<meta http-equiv="Cache" content="no-cache">
+		<title>会员中心</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet">
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body class="mui-android mui-android-6 mui-android-6-0">
+		<style>
+			h3{
+				margin-left:25px;
+				color:green;
+			}
+			h4{
+				margin-left:10px;
+				color:green;
+			}
+			#tishi{
+				margin-left:10px;
+				color:red;
+			}
+		</style>
+		<center>
+			<br>
+			<h2 id="vipInfo">loading</h2>
+			<br>
+			<a href="buyVip.html">
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block">开通会员</button>
+			</a>
+			<a href="activeCode.html">
+				<button type="button" class="mui-btn mui-btn-block">激活码入口</button>
+			</a>
+		</center>
+		<h4 id="tishi">使用会员需先绑定手机</h4>
+		<a href="../me/bindPhone.html">
+			<button type="button" class="mui-btn mui-btn-block">绑定手机</button>
+		</a>
+		<a href="../index.html">
+			<button type="button" class="mui-btn mui-btn-purple mui-btn-block">返回主页</button>
+		</a>
+		<h3>会员权益：</h3>
+		<h4>1、解锁所有题目</h4>
+		<h4>2、错题重做</h4>
+		<h4>3、云端保存进度等更多特权敬请期待</h4>
+		<script type="text/javascript">
+			mui.post(baseurl + '/getVipInfo', {}, function(data) {
+				if(data.result == "toLogin") {
+					window.location.href = "../login.html";
+					return;
+				} else if(data.result == "ok") {
+					document.getElementById("vipInfo").innerHTML = data.message;
+				}
+			}, 'json');
+		</script>
+	
+
+</body></html>
