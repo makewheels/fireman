@@ -42,20 +42,19 @@
 		<li class="mui-table-view-cell">金额：${amount}元</li>
 	</ul>
 	<button id="btn_alipay" class="mui-btn mui-btn-blue mui-btn-block">支付宝支付</button>
-        <div id="pay-methods-panel" class="pay-methods-panel">
-            <form id="pay_form" method="POST" action="https://openapi.alipay.com/gateway.do"> 
-                <input type="hidden" name="format" value="json"/>
-                <input type="hidden" name="sign" value="${sign}"/>
-                <input type="hidden" name="sign_type" value="RSA2" />
-                <input type="hidden" name="charset" value="UTF-8" />
-                <input type="hidden" name="app_id" value="2018021402198213" />
-                <input type="hidden" name="method" value="alipay.trade.wap.pay" />
-                <input type="hidden" name="version" value="1.0" />
-                <input type="hidden" name="timestamp" value="${timestamp}" />
-                <input type="hidden" name="return_url" value="${return_url}" />
-                <input type="hidden" name="notify_url" value="${notify_url}" />
-            </form>
-        </div>
+    <div id="pay-methods-panel" class="pay-methods-panel">
+        <form id="pay_form" method="POST" action="https://openapi.alipay.com/gateway.do"> 
+            <input type="hidden" name="format" value="json"/>
+            <input type="hidden" name="sign" value="${sign}"/>
+            <input type="hidden" name="sign_type" value="RSA2" />
+            <input type="hidden" name="charset" value="UTF-8" />
+            <input type="hidden" name="app_id" value="2018021402198213" />
+            <input type="hidden" name="method" value="alipay.trade.wap.pay" />
+            <input type="hidden" name="version" value="1.0" />
+            <input type="hidden" name="timestamp" value="${timestamp}" />
+            <input type="hidden" name="return_url" value="${return_url}" />
+            <input type="hidden" name="notify_url" value="${notify_url}" />
+        </form>
     </div>
     <script type="text/javascript" src="ap.js"></script>
     <script>

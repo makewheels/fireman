@@ -55,11 +55,11 @@ public class CreateActiveCode {
 
 		// 配置开始-----------------
 		// 要几个激活码
-		int amount = 2;
+		int amount = 1;
 		// 会员时长
 		int days = 20;
 		// 备注
-		String note = "又送老妈了";
+		String note = "我自己啊";
 		// 配置结束-----------------
 
 		for (int i = 0; i < amount; i++) {
